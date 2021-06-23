@@ -24,6 +24,7 @@ const useStyles = makeStyles({
 
 export default function MovieCard(props) {
   const classes = useStyles();
+  //whatever passed in: calling it movie
   const movie = props.movie;
   return (
     <Card className={classes.card}>
