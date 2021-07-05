@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";  // Changed
 import Header from "../components/headerMovieList";
 import FilterCard from "../components/filterMoviesCard";
 import Grid from "@material-ui/core/Grid";
@@ -13,7 +13,40 @@ const useStyles = makeStyles({
 
 const MovieListPage = (props) => {
   const classes = useStyles();
-  const movies = props.movies;
+  const [theMovies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&page=1`
+    )
+      
+    .then(res => res.json())
+    .then(json => json.results )
+    .then(movies => {
+    console.log(movies)
+     setMovies(movies);
+    });
+}, []);
+/*
+      .then((res) => res.json())
+      .then((json) => {
+        //console.log(json);
+        setMovies(json.results)
+        return json.results;
+        
+      })
+
+      
+      //.then((movies) => {
+       // setMovies(movies);
+     //   
+     // });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+*/
+
+
+
 
   return (
     <Grid container className={classes.root}>
@@ -24,7 +57,7 @@ const MovieListPage = (props) => {
         <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
           <FilterCard />
         </Grid>
-        <MovieList movies={movies}></MovieList>
+        <MovieList movies={theMovies}></MovieList>
       </Grid>
     </Grid>
   );

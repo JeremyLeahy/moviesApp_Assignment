@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 import MovieHeader from "../components/headerMovie/";
 import MovieDetails from "../components/movieDetails/";
 import Grid from "@material-ui/core/Grid";
@@ -17,11 +17,43 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
 }));
-
+// creating mp component passing it in props
 const MoviePage = (props) => {
   const classes = useStyles();
-  const movie = props.movie;
-  const images = props.images;
+  //creating the ID
+  const { id } = props.match.params;
+  const [movie, setMovie] = useState(null);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    )
+    // return json j
+      .then((res) => {
+        return res.json();
+      })
+      // setting what has been returned to the movie object
+      .then((movie) => {
+         //console.log(movie)
+        setMovie(movie);
+      });
+  }, [id]);
+
+  // returning images
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    )
+      .then((res) => res.json())
+      //returning posters array from json file
+      .then((json) => json.posters)
+      .then((images) => {
+        // console,log(images)
+        setImages(images);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -42,10 +74,10 @@ const MoviePage = (props) => {
                       className={classes.gridListTile}
                       cols={1}
                     >
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500/${image}`}
-                        alt={image.poster_path}
-                      />
+                    <img
+              src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+              alt={image.file_path}
+          />  
                     </GridListTile>
                   ))}
                 </GridList>
