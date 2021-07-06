@@ -14,36 +14,47 @@ const useStyles = makeStyles({
 const MovieListPage = (props) => {
   const classes = useStyles();
   const [theMovies, setMovies] = useState([]);
+  const [nameFilter, setNameFilter] = useState("");
+  const [genreFilter, setGenreFilter] = useState("0");
+
+  const genreId = Number(genreFilter);
+
+  let displayedMovies = theMovies
+    .filter((m) => {
+      return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
+    })
+    .filter((m) => {
+      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    });
+
+  const handleChange = (type, value) => {
+    if (type === "name") setNameFilter(value);
+    else setGenreFilter(value);
+  };
+
+  const addToFavorites = (movieId) => {
+    const updatedMovies = theMovies.map((m) =>
+      m.id === movieId ? { ...m, favorite: true } : m
+    );
+    setMovies(updatedMovies);
+  };
+
+  
 
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&page=1`
     )
-      
-    .then(res => res.json())
-    .then(json => json.results )
-    .then(movies => {
-    console.log(movies)
-     setMovies(movies);
-    });
-}, []);
-/*
       .then((res) => res.json())
       .then((json) => {
-        //console.log(json);
-        setMovies(json.results)
+        // console.log(json);
         return json.results;
-        
       })
-
-      
-      //.then((movies) => {
-       // setMovies(movies);
-     //   
-     // });
+      .then((movies) => {
+        setMovies(movies);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-*/
 
 
 
@@ -55,9 +66,13 @@ const MovieListPage = (props) => {
       </Grid>
       <Grid item container spacing={5}>
         <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <FilterCard />
+        <FilterCard
+      onUserInput={handleChange}
+      titleFilter={nameFilter}
+      genreFilter={genreFilter}
+    /> 
         </Grid>
-        <MovieList movies={theMovies}></MovieList>
+        <MovieList movies={displayedMovies} selectFavorite={addToFavorites}></MovieList>
       </Grid>
     </Grid>
   );
