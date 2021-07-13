@@ -6,8 +6,8 @@ import { useQuery } from 'react-query'
 import AddToPlaylistIcon from '../components/cardIcons/addToPlaylist'
 
 
-const UpcomingMoviesPage = (props) => {
-  const [movies, setMovies] = useState([]);
+//const UpcomingMoviesPage = (props) => {
+  //const [movies, setMovies] = useState([]);
   //const favorites = movies.filter(m => m.favorite)
   //localStorage.setItem('favorites', JSON.stringify(favorites))
 
@@ -18,12 +18,28 @@ const UpcomingMoviesPage = (props) => {
    // setMovies(updatedMovies);
   //};
 
+
+  const UpcomingMoviesPage = (props) => {
+    const {  data, error, isLoading, isError }  = useQuery('upcoming', getUpcomingMovies)
+  
+    if (isLoading) {
+      return <Spinner />
+    }
+  
+    if (isError) {
+      return <h1>{error.message}</h1>
+    }  
+    const movies = data.results;
+  
+/* 
 useEffect(() => {
   getUpcomingMovies().then(movies => {
     setMovies(movies);
   });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+}, []); */
+
+
 /* 
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);

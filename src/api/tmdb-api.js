@@ -70,7 +70,7 @@ export const getMovies = async () => {
         return json.results;
       });
   };
-
+/* 
   export const getUpcomingMovies = () => {
     return fetch(
       "https://api.themoviedb.org/3/movie/upcoming?api_key=" +
@@ -79,10 +79,10 @@ export const getMovies = async () => {
     )
       .then(res => res.json())
       .then(json => json.results);
-  };
+  }; */
 
 
-/*
+
   export const getUpcomingMovies = async () => {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}`
@@ -91,7 +91,7 @@ export const getMovies = async () => {
       throw new Error(response.json().message);
     }
     return response.json();
-  }; */
+  }; 
 
 
 
