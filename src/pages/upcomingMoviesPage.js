@@ -24,8 +24,6 @@ useEffect(() => {
   });
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
-
-
 /* 
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);
@@ -47,7 +45,6 @@ const FavoriteMoviesPage = () => {
   }
   const movies = favoriteMovieQueries.map((q) => q.data);
   const toDo = () => true;
-
 */
 
 
