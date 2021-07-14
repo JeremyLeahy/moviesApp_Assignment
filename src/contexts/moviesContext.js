@@ -8,9 +8,13 @@ const MoviesContextProvider = (props) => {
   const [myReviews, setMyReviews] = useState( {} ) 
 
   const addToFavorites = (movie) => {
-    setFavorites([...favorites,movie.id])
-//if id already in list don't add 
+    //setFavorites([...favorites,movie.id])
 
+//if the favorites list doesn't include the movie id
+if (!favorites.includes(movie.id)){
+  //then add to list
+  setFavorites([...favorites,movie.id])
+}
 
   };
 
@@ -20,6 +24,7 @@ const MoviesContextProvider = (props) => {
   // We will use this function in a later section
   const removeFromFavorites = (movie) => {
     setFavorites( favorites.filter(
+      //setting our fav list -for every movie in favs only leaving in the movie id that aren't equal to the movie id that we passed in 
       (mId) => mId !== movie.id
     ) )
   };
