@@ -9,6 +9,9 @@ const MoviesContextProvider = (props) => {
 
   const addToFavorites = (movie) => {
     setFavorites([...favorites,movie.id])
+//if id already in list don't add 
+
+
   };
 
   const addReview = (movie, review) => {
@@ -23,6 +26,7 @@ const MoviesContextProvider = (props) => {
 
   const addToWatchList = (movie) => {
     setWatchList([...watchList,movie.id])
+    console.log(watchList)
   }; 
 
   
