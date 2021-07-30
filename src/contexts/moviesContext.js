@@ -31,8 +31,11 @@ if (!favorites.includes(movie.id)){
   };
 
   const addToWatchList = (movie) => {
-    setWatchList([...watchList,movie.id])
-    console.log(watchList)
+
+    if (!watchList.includes(movie.id)){
+      setWatchList([...watchList,movie.id])
+      console.log(watchList)
+    }
   }; 
 /*
   const removeFromWatchList = (movie) => {

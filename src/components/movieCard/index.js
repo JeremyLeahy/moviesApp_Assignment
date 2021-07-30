@@ -8,6 +8,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import IconButton from "@material-ui/core/IconButton";
@@ -29,11 +30,18 @@ const useStyles = makeStyles({
 export default function MovieCard({ movie, action }) {
   const classes = useStyles();
   const { favorites, addToFavorites } = useContext(MoviesContext);
+  const {watchList, addToWatchList} =  useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
     movie.favorite = false
+  }
+
+  if (watchList.find((id) => id === movie.id)) {
+    movie.watchList = true;
+  } else {
+    movie.watchList = false
   }
 
   const handleAddToFavorite = (e) => {
@@ -49,6 +57,11 @@ export default function MovieCard({ movie, action }) {
         movie.favorite ? (
           <Avatar className={classes.avatar}>
             <FavoriteIcon />
+          </Avatar>
+        ) : 
+        movie.watchList? (
+          <Avatar className={classes.avatar}>
+            <WatchLaterIcon />
           </Avatar>
         ) : null
       }
