@@ -96,6 +96,9 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         <MovieReviews movie={movie} />
       </Drawer>
       </>
+
+
+
   );
 };
 export default  MovieDetails ;

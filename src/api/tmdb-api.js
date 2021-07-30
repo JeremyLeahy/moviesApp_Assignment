@@ -81,11 +81,19 @@ export const getMovies = async () => {
       .then(json => json.results);
   }; */
 
-
-
   export const getUpcomingMovies = async () => {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  }; 
+
+  export const getTopRatedMovies = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}`
     );
     if (!response.ok) {
       throw new Error(response.json().message);

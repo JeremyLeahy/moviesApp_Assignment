@@ -7,25 +7,13 @@ import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage"; 
+import TopRatedMoviesPage from "./pages/topRatedMoviesPage"; 
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import MustWatchPage from "./pages/mustWatchPage"; 
-/*
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/movies/:id" component={MoviePage} />
-        <Route path="/" component={HomePage} />
-        <Redirect from="*" to="/" />
-      </Switch>
-    </BrowserRouter>
-  );
-};
 
-ReactDOM.render(<App />, document.getElementById("root")); */
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -50,8 +38,10 @@ const App = () => {
         <Route exact path="/reviews/form" component={AddMovieReviewPage} />
         <Route exact path="/movies/upcoming" component={UpcomingMoviesPage} />
         <Route exact path="/movies/mustSee" component={MustWatchPage} />
+        <Route exact path="/movies/topRated" component={TopRatedMoviesPage} />
         <Route path="/reviews/:id" component={MovieReviewPage} />
         <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
+        
         <Route path="/movies/:id" component={MoviePage} />
         <Route exact path="/" component={HomePage} />
       
