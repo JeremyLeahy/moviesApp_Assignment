@@ -91,6 +91,21 @@ export const getMovies = async () => {
     return response.json();
   }; 
 
+  export const getPopularMovies = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  }; 
+
+  
+
+
+
+
   export const getTopRatedMovies = async () => {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}`
@@ -100,6 +115,18 @@ export const getMovies = async () => {
     }
     return response.json();
   }; 
+
+  export const getMovieCredits = async (id) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  }; 
+
+
 
 
 
