@@ -11,6 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from "../movieReviews";
 import Button from "@material-ui/core/Button";
+import CreditsList from "../creditList"
+import SimilarMoviesList from "../similarMoviesList"
 
 
 
@@ -85,21 +87,19 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         ))}
       </Paper>
 
-      
-      <Button variant="outlined" size="large" color="primary">
-            Credits
-          </Button>
 
-          <Fab
-        color="secondary"
-        variant="extended"
-        onClick={() =>setDrawerOpen(true)}
-        className={classes.fab}
-      >
-        <NavigationIcon />
-        Credits
-      </Fab>   
-          
+      <Paper elevation={3}>
+      <SimilarMoviesList movie = {movie}> 
+
+        </SimilarMoviesList>  
+        </Paper> 
+
+      <Paper elevation={3}>
+      <CreditsList movie = {movie}>
+        </CreditsList>  
+        </Paper> 
+
+        
       
 
       <Fab
@@ -113,13 +113,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       </Fab>
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
-      </Drawer>
-
-      
-         
-        
-
-        
+      </Drawer> 
 
       </>
 

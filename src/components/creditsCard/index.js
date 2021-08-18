@@ -25,7 +25,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
+import StarIcon from '@material-ui/icons/Star';
+import StarsIcon from '@material-ui/icons/Stars';
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
@@ -46,54 +47,84 @@ export default function MovieCredits({ movie }) {
         setCredits(credits.cast);
       });
     }, []);
-
-
-
+/*
     return (
-      <div> 
-          <h2>Credits (Cast)</h2>
-          <Card className={classes.card}>
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="credits table">
+            <TableHead>
+              <TableRow>
+                <TableCell >Actor</TableCell>
+                <TableCell align="center">Character</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {credits.map((r) => (
+                <TableRow key={r.id}>
+                  <TableCell component="th" scope="row">
+                    {r.name}
+                  </TableCell>
+                  <TableCell >{r.character}</TableCell>
+                  
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      );
+    
+              }
+           */   
+
+          
+    return (
+        <>  
           {credits.map((r) => (
-            
+             <Grid item xs={12} sm={6} md={4} lg={20} xl={2} spacing = {3}>
+          <Card className={classes.card}>
+                     
           <CardMedia
                     className={classes.media}
-                    
-                      
-
+                              
+                              
                     image={
                       r.profile_path
                         ? `https://image.tmdb.org/t/p/w500/${r.profile_path}`
                         : img
                     }
-     
-                  />   
-                  ))}
-          </Card>
+                  />
+      <CardContent>
+        
+            <Typography variant="h6" component="p">
+              
+              <StarsIcon fontSize="small" />
+              {" "}{r.name}
+            </Typography>
           
-      </div > 
+          
+            <Typography variant="h6" component="p">
+
+              {"Character" + ":" + " "}{r.character}
+            </Typography>
+          
+      </CardContent>
+
+        
+                 
+          </Card>
+          </Grid>
+          ))}   
+          </>            
       ); 
-                  }
+                  }             
+
+
+
+
+
+      
             
-
-
-
-
-
-
             
-
-
-
-
-
-
-
-
-
-
-
-
-
             
-
+    
+  
 
