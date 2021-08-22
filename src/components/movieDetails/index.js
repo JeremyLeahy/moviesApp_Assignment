@@ -119,8 +119,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
 
 
 
-      
-
+  
 
 
   );

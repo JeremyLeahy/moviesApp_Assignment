@@ -27,6 +27,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import StarIcon from '@material-ui/icons/Star';
 import StarsIcon from '@material-ui/icons/Stars';
+import Drawer from "@material-ui/core/Drawer";
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
@@ -47,35 +48,8 @@ export default function MovieCredits({ movie }) {
         setCredits(credits.cast);
       });
     }, []);
-/*
-    return (
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="credits table">
-            <TableHead>
-              <TableRow>
-                <TableCell >Actor</TableCell>
-                <TableCell align="center">Character</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {credits.map((r) => (
-                <TableRow key={r.id}>
-                  <TableCell component="th" scope="row">
-                    {r.name}
-                  </TableCell>
-                  <TableCell >{r.character}</TableCell>
-                  
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      );
-    
-              }
-           */   
-
-          
+ 
+      
     return (
         <>  
           {credits.map((r) => (
@@ -103,13 +77,22 @@ export default function MovieCredits({ movie }) {
           
             <Typography variant="h6" component="p">
 
-              {"Character" + ":" + " "}{r.character}
+              {"Character: " + " "}{r.character}
             </Typography>
           
       </CardContent>
 
-        
-                 
+      <CardActions disableSpacing>
+      <Link to={`/actors/${r.id}/${movie.id}`}>
+      
+          <Button variant="outlined" size="medium" color="primary">
+            See more...
+          </Button>
+          </Link>
+      </CardActions>
+      
+          
+           
           </Card>
           </Grid>
           ))}   

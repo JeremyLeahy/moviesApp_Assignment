@@ -37,14 +37,14 @@ if (!favorites.includes(movie.id)){
       console.log(watchList)
     }
   }; 
-/*
+
   const removeFromWatchList = (movie) => {
-    setWatchList( favorites.filter(
+    setWatchList( watchList.filter(
       //setting our fav list -for every movie in favs only leaving in the movie id that aren't equal to the movie id that we passed in 
       (mId) => mId !== movie.id
     ) )
   };
-*/
+
 
 
   
@@ -57,8 +57,8 @@ if (!favorites.includes(movie.id)){
         addToFavorites,
         removeFromFavorites,
         addReview,
-        addToWatchList
-      
+        addToWatchList,
+        removeFromWatchList
       }}
     >
       {props.children}

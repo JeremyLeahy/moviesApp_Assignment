@@ -35,8 +35,8 @@ const MustWatchPage = () => {
       action={(movie) => {
         return (
           <>
+            <RemoveFromWatchlist movie={movie} />
             
-            <WriteReview movie={movie} />
           </>
         );
       }}

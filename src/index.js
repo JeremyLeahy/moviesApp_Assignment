@@ -14,6 +14,7 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import MustWatchPage from "./pages/mustWatchPage"; 
 import PopularMoviesPage from "./pages/popularMoviesPage"; 
+import ActorPage from "./pages/actorDetailsPage"; 
 
 
 
@@ -46,8 +47,11 @@ const App = () => {
         
         <Route path="/reviews/:id" component={MovieReviewPage} />
         <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
+
+        <Route exact path="/actors/:id/:movie_id" component={ActorPage} />
         
         <Route path="/movies/:id" component={MoviePage} />
+
         <Route exact path="/" component={HomePage} />
       
         <Redirect from="*" to="/" />

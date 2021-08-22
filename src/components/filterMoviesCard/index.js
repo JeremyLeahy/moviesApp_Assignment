@@ -18,7 +18,8 @@ import Spinner from '../spinner'
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    backgroundColor: "rgb(255, 60, 57)",
+    backgroundColor: "#36454f",
+    color: "rgb(0, 0, 0)"
   },
   media: { height: 300 },
 
@@ -26,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 220,
     backgroundColor: "rgb(255, 255, 255)",
+  },
+
+  filterText: {
+    
+    color: "rgb(0,0,0)",
   },
 }));
 
@@ -61,8 +67,8 @@ export default function FilterMoviesCard(props) {
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
+        <Typography variant="h5" component="h1" style={{ color: 'white' }}>
+          <SearchIcon fontSize="large"  style={{ color: 'white' }} />
           Filter the movies.
         </Typography>
         <TextField
@@ -98,8 +104,8 @@ export default function FilterMoviesCard(props) {
         title="Filter"
       />
       <CardContent>
-        <Typography variant="h5" component="h1" >
-          <SearchIcon fontSize="large" />
+        <Typography variant="h5" component="h1" style={{ color: 'white' }}>
+          <SearchIcon fontSize="large"   style={{ color: 'white' }}/>
           Filter the movies.  
           <br />
         </Typography>

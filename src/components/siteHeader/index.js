@@ -12,6 +12,7 @@ import Menu from "@material-ui/core/Menu";
 import { withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { createTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -19,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
   offset: theme.mixins.toolbar,
 }));
+
+
 
 const SiteHeader = ( { history }) => {
   const classes = useStyles();
@@ -30,8 +33,7 @@ const SiteHeader = ( { history }) => {
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "Popular", path: "/movies/popular" },
-    
+    { label: "Popular", path: "/movies/popular" },  
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Must See", path: "/movies/mustSee" },
     { label: "Top Rated", path: "/movies/topRated" },
@@ -41,13 +43,13 @@ const SiteHeader = ( { history }) => {
     history.push(pageURL);
   };
 
-  const handleMenu = (event) => {
+  const handleMenu = (event) => { 
     setAnchorEl(event.currentTarget);
   };
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" color="secondary" style={{ background: '#36454f' }}>
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
             TMDB Client
