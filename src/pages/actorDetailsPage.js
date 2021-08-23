@@ -3,11 +3,12 @@ import { withRouter } from "react-router-dom";
 import MovieDetails from "../components/movieDetails";
 import PageTemplate from "../components/templateMoviePage";
 //import useMovie from "../hooks/useMovie";
-import { getMovie } from '../api/tmdb-api'
+import { getActorFilmography, getMovie } from '../api/tmdb-api'
 import { getActorInfo2 } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 import ActorInfo from "../components/actorDetails";
+import ActorMovies from "../components/actorMovies";
 import ActorHeader from "../components/headerActor";
 
 const ActorPage = (props) => {
@@ -16,7 +17,7 @@ const ActorPage = (props) => {
 
   const { data: actor, error, isLoading, isError } = useQuery(
     ["actor", { id: id }],
-    getActorInfo2
+    getActorInfo2,
   );
 
   if (isLoading) {
@@ -34,17 +35,21 @@ const ActorPage = (props) => {
     <ActorHeader actor = {actor} >
 
     </ActorHeader>
+
       {actor ? (
         <>
           
             <ActorInfo actor={actor} />
-            
-
-          
+               
         </>
       ) : (
         <p>Waiting for actor details</p>
       )}
+
+    <ActorMovies actor = {actor} >
+
+    </ActorMovies>
+
     </>
   );
 };

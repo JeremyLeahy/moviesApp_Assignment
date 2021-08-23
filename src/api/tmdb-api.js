@@ -156,6 +156,17 @@ export const getMovies = async () => {
     return response.json();
   };
 
+  export const getActorFilmography = async ( id ) => {
+    
+    const response = await fetch(
+      `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  };
+
 
 
 

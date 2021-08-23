@@ -18,10 +18,12 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import { getActorInfo } from "../../api/tmdb-api";
+import { getActorFilmography } from "../../api/tmdb-api";
+import ActorFilms from "../actorMovies"
+import ActorMoviesList from "../actorMoviesList"
 import img from '../../images/film-poster-placeholder.png'
 import { Info } from "@material-ui/icons";
 import Grid from "@material-ui/core/Grid";
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,9 +44,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function ActorInfo({ actor }) {
+export default function ActorInfo({ actor, movie }) {
     const classes = useStyles();
     const [info, setInfo] = useState([]);
+    const [actorMovies, setActorMovies] = useState([]);
   
     useEffect(() => {
       getActorInfo(actor.id).then((info) => {
@@ -52,22 +55,28 @@ export default function ActorInfo({ actor }) {
       });
     }, []);
 
+/*
+    useEffect(() => {
+        getActorFilmography(actor.id).then((actorMovies) => {
+          setActorMovies(actorMovies);
+        });
+      }, []);
+
+  */  
 
   return (
     <>
       
       <br />
-       
-        
+           
       <Grid container style={{ padding: "25px" }}>
-      <Grid item xs={6}>
+      <Grid item xs={6} >
 
 
 
-      <img 
+      <img width="90%"
       src={`https://image.tmdb.org/t/p/w500/${info.profile_path}`}
       
-
       />
       </Grid>
 
@@ -80,11 +89,14 @@ export default function ActorInfo({ actor }) {
 
       </Grid>
 
-      <Paper elevation={3}>
-      <div>
-      <h2>Filmography</h2>
-        </div>
+        
+
+        <Paper elevation={3}>
+      <ActorMoviesList  actor = {actor}> 
+
+        </ActorMoviesList>  
         </Paper> 
+
 
       
 
