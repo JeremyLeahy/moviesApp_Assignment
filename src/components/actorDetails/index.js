@@ -1,28 +1,9 @@
 import React, { useState, useEffect} from "react";
-import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
-import MonetizationIcon from "@material-ui/icons/MonetizationOn";
-import StarRate from "@material-ui/icons/StarRate";
-import NavigationIcon from "@material-ui/icons/Navigation";
-import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import MovieReviews from "../movieReviews";
-import Button from "@material-ui/core/Button";
-import CreditsList from "../creditList"
-import SimilarMoviesList from "../similarMoviesList"
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import { getActorInfo } from "../../api/tmdb-api";
-import { getActorFilmography } from "../../api/tmdb-api";
-import ActorFilms from "../actorMovies"
 import ActorMoviesList from "../actorMoviesList"
-import img from '../../images/film-poster-placeholder.png'
-import { Info } from "@material-ui/icons";
 import Grid from "@material-ui/core/Grid";
 
 
@@ -54,15 +35,7 @@ export default function ActorInfo({ actor, movie }) {
         setInfo(info);
       });
     }, []);
-
-/*
-    useEffect(() => {
-        getActorFilmography(actor.id).then((actorMovies) => {
-          setActorMovies(actorMovies);
-        });
-      }, []);
-
-  */  
+ 
 
   return (
     <>
@@ -97,8 +70,6 @@ export default function ActorInfo({ actor, movie }) {
         </ActorMoviesList>  
         </Paper> 
 
-
-      
 
     
       </>
